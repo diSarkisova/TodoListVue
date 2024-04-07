@@ -15,3 +15,4 @@ The “styles” folder is used to store CSS files.\
 # Installation
 1. git clone <https://github.com/diSarkisova/todolist-vue.git>
 2. Open index.html. That's it!
+3.
