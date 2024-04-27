@@ -1,6 +1,6 @@
 <template>
   <button class="primary-button">
-    <component v-if="icon" :is="icon"></component>
+    <component class="primary-button__icon" v-if="icon" :is="icon"></component>
   </button>
 </template>
 
@@ -14,6 +14,7 @@ defineProps( {
 </script>
 
 <style scoped>
+
 .primary-button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -23,10 +24,17 @@ defineProps( {
   background-color: #333333;
 }
 
-.primary-button svg {
+.primary-button__icon {
   width: 25px;
   height: 25px;
 }
 
+.primary-button:hover :deep(.primary-button__icon path) {
+  fill: white;
+}
 
+.primary-button:active :deep(.primary-button__icon path) {
+  fill: black;
+  transition: fill .2s ease-out;
+}
 </style>

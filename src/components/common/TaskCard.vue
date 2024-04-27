@@ -1,10 +1,10 @@
 <template>
     <div class="task-card">
-        <TheInput class="created" :disabled="!isEdit" @keydown.enter="onSave" v-model="value"/>
-        <TheButton class="change" v-if="!isEdit" @click="onEdit" :icon="PenIcon">
+        <TheInput class="task-card__created" :disabled="!isEdit" @keydown.enter="onSave" v-model="value"/>
+        <TheButton class="task-card__change" v-if="!isEdit" @click="onEdit" :icon="PenIcon">
         </TheButton>
-        <TheButton class="save" v-else @click="onSave" :icon="SaveIcon" ></TheButton>
-      <TheButton class="delete" @click="onDelete" :icon="BasketIcon"></TheButton>
+        <TheButton class="task-card__save" v-else @click="onSave" :icon="SaveIcon" ></TheButton>
+      <TheButton class="task-card__delete" @click="onDelete" :icon="BasketIcon"></TheButton>
     </div>
 </template>
 
@@ -34,12 +34,12 @@ function onEdit() {
 }
 
 function onDelete() {
-  emit("delete",value.value)
+  emit("delete", value.value)
 }
 
 </script>
 
-<style>
+<style lang="scss">
 .task-card {
   display: flex;
   justify-content: center;
@@ -49,3 +49,4 @@ function onDelete() {
   border-radius: 8px;
 }
 </style>
+

@@ -15,22 +15,22 @@
         </svg>
       </a>
   </header>
-  <main>
+  <main class="main">
     <section class="hero">
-      <TheInput class="search" v-model="search" placeholder="Search tasks..." />
-      <div class="hero__container">
-        <TheInput class="create-input" v-model="newTaskName" placeholder="Add a new task" />
-        <TheButton class="create-button" @click="createNewTask" :icon="PlusIcon">
+      <TheInput class="hero__search" v-model="search" placeholder="Search tasks..." />
+      <div class="hero-container">
+        <TheInput class="hero__create-input" v-model="newTaskName" placeholder="Add a new task" />
+        <TheButton class="hero__create-button" @click="createNewTask" :icon="PlusIcon">
         </TheButton>
       </div>
-        <div class="hero__wrapper">
+        <div class="hero-wrapper">
           <h1 class="hero__title">Created tasks</h1>
           <ul v-show="tasks.length">
-            <li :key="item.id" v-for="item in filteredTasks">
-              <TaskCard :name="item.name" @save="changeTask(item.id, $event)" @delete="deleteTask(item.id)"></TaskCard>
+            <li :key="item.id" v-for="item in filteredTasks" >
+              <TaskCard :name="item.name" @save="changeTask(item.id, $event)" @delete="deleteTask(index)"></TaskCard>
             </li>
           </ul>
-          <div class="hero__container-placeholder" v-show="!tasks.length">
+          <div class="hero__placeholder-container" v-show="!tasks.length">
             <hr>
             <img src="../assets/images/placeholder.png" alt="placeholder">
             <h3 class="hero__description"><b>You don't have any tasks created yet. </b><br> Create and organize your tasks.</h3>
@@ -50,6 +50,7 @@ import {computed, ref} from "vue";
 const search = ref(null)
 const tasks = ref([])
 const newTaskName = ref(null)
+
 
 function createNewTask() {
   if (newTaskName.value) {
@@ -72,10 +73,10 @@ const filteredTasks = computed(() => {
   return tasks.value.filter((task) => task.name.includes(search.value))
 })
 
-function deleteTask(id) {
-  const task = tasks.value.find((task) => task.id === taskId);
+  function deleteTask(index) {
+    const task = tasks.value.find((task) => task.id === taskId);
   if (task) {
-    tasks.splice(taskId, 1);
+    tasks.slice(index, 1);
   }
   }
 
@@ -90,34 +91,29 @@ function deleteTask(id) {
   height: 140px;
   width: 100%;
   background-color: #0D0D0D;
+
+  &__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 26px;
+  }
 }
 
-.header__link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  padding: 26px;
-}
-
-.header__link:active path {
-  fill: black;
-  transition: fill .2s ease-out;
-}
-
-main {
+.main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 24px;
   padding: 20px 45px;
-}
 
-@media screen and (min-width: 500px) {
-  main {
-    padding: 20px 78px;
+  @media screen and (min-width: 500px) {
+    & {
+      padding: 20px 78px;
 
+    }
   }
 }
 
@@ -125,42 +121,49 @@ main {
   display: grid;
   gap: 24px;
   width: 100%;
-}
 
-@media screen and (min-width: 400px) {
-  .hero {
-    max-width: 704px;
+  @media screen and (min-width: 400px) {
+    & {
+      max-width: 704px;
+    }
+  }
 
+  &__search {
+    padding: 8px 16px;
   }
 }
 
-.search {
-  padding: 8px 16px;
-}
 
-.hero__container {
+
+.hero-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
 }
 
-.create-button {
+.hero__create-button {
   background-color: #1E6F9F;
 }
 
-.create-button:hover {
+.hero__create-button:hover {
   transition: background-color .25s ease-out;
   background-color: #1E6F9F;
 }
 
-.create-button:active {
+.hero__create-button:active {
   background-color: #5E60CE;
 }
 
-.create-button:hover path {
+.hero__create-button:hover path {
   transition: fill .25s ease-out;
   fill: black;
+}
+
+.hero-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .hero__title {
@@ -172,7 +175,7 @@ main {
   margin: 0;
 }
 
-.hero__container-placeholder {
+.hero__placeholder-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -189,9 +192,5 @@ main {
   text-align: center;
 }
 
-.hero__wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+
 </style>
