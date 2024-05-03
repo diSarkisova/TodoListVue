@@ -47,7 +47,7 @@ The “components” folder contain folders buttons, common, icons.
 
 **In this project we used the following components:**
 
-MainPage- component of a whole todo page..
+MainPage- component of a whole todo page.
 
 TheInput - an input field component that allows users to create, save, search, and delete items.
 
