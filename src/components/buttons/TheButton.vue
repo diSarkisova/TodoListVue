@@ -13,7 +13,7 @@ defineProps( {
   })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 .primary-button {
   border-radius: 8px;
@@ -22,19 +22,21 @@ defineProps( {
   cursor: pointer;
   transition: border-color 0.25s;
   background-color: #333333;
+
+  &__icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  &:hover :deep(.primary-button__icon path) {
+    fill: white;
+  }
+
+  &:active :deep(.primary-button__icon path) {
+    fill: black;
+    transition: fill .2s ease-out;
+  }
 }
 
-.primary-button__icon {
-  width: 25px;
-  height: 25px;
-}
 
-.primary-button:hover :deep(.primary-button__icon path) {
-  fill: white;
-}
-
-.primary-button:active :deep(.primary-button__icon path) {
-  fill: black;
-  transition: fill .2s ease-out;
-}
 </style>

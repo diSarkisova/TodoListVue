@@ -39,7 +39,7 @@ function onDelete() {
 
 </script>
 
-<style lang="scss">
+<style scoped>
 .task-card {
   display: flex;
   justify-content: center;

@@ -18,12 +18,12 @@
   <main class="main">
     <section class="hero">
       <TheInput class="hero__search" v-model="search" placeholder="Search tasks..." />
-      <div class="hero-container">
+      <div class="hero__container">
         <TheInput class="hero__create-input" v-model="newTaskName" placeholder="Add a new task" />
         <TheButton class="hero__create-button" @click="createNewTask" :icon="PlusIcon">
         </TheButton>
       </div>
-        <div class="hero-wrapper">
+        <div class="hero__wrapper">
           <h1 class="hero__title">Created tasks</h1>
           <ul v-show="tasks.length">
             <li :key="item.id" v-for="item in filteredTasks" >
@@ -83,7 +83,7 @@ const filteredTasks = computed(() => {
 </script>
 
 
-<style scoped>
+<style lang="scss" scoped>
 .header {
   display: flex;
   align-items: center;
@@ -131,66 +131,66 @@ const filteredTasks = computed(() => {
   &__search {
     padding: 8px 16px;
   }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  &__create-button {
+    background-color: #1E6F9F;
+  }
+
+  &__create-button {
+    background-color: #1E6F9F;
+  }
+
+  &__create-button:hover {
+    transition: background-color .25s ease-out;
+    background-color: #1E6F9F;
+  }
+
+  &__create-button:active {
+    background-color: #5E60CE;
+  }
+
+  &__create-button:hover path {
+    transition: fill .25s ease-out;
+    fill: black;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__title {
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 600;
+    padding: 8px 0;
+    color: #4EA8DE;
+    margin: 0;
+  }
+
+  &__placeholder-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__description {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    padding: 16px 0;
+    color: #808080;
+    margin: 0;
+    text-align: center;
+  }
 }
-
-
-
-.hero-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.hero__create-button {
-  background-color: #1E6F9F;
-}
-
-.hero__create-button:hover {
-  transition: background-color .25s ease-out;
-  background-color: #1E6F9F;
-}
-
-.hero__create-button:active {
-  background-color: #5E60CE;
-}
-
-.hero__create-button:hover path {
-  transition: fill .25s ease-out;
-  fill: black;
-}
-
-.hero-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.hero__title {
-  font-size: 18px;
-  line-height: 18px;
-  font-weight: 600;
-  padding: 8px 0;
-  color: #4EA8DE;
-  margin: 0;
-}
-
-.hero__placeholder-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero__description {
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-  padding: 16px 0;
-  color: #808080;
-  margin: 0;
-  text-align: center;
-}
-
-
 </style>
