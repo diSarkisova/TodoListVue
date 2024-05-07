@@ -18,7 +18,7 @@ defineProps( {
 .primary-button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 16px 15px;
+  padding: 10px 12px;
   cursor: pointer;
   transition: border-color 0.25s;
   background-color: #333333;
