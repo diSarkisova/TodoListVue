@@ -26,7 +26,7 @@
         <div class="hero__wrapper">
           <h1 class="hero__title">Created tasks</h1>
           <ul v-show="tasks.length">
-            <li :key="item.id" v-for="item in filteredTasks" >
+            <li :key="item.id" v-for="(item,index) in filteredTasks" >
               <TaskCard :name="item.name" @save="changeTask(item.id, $event)" @delete="deleteTask(index)"></TaskCard>
             </li>
           </ul>
@@ -47,14 +47,14 @@ import TheInput from "../components/common/TheInput.vue";
 import TheButton from "../components/buttons/TheButton.vue";
 import PlusIcon from "../components/icons/PlusIcon.vue";
 import {computed, ref} from "vue";
-const search = ref(null)
+const search = ref("")
 const tasks = ref([])
-const newTaskName = ref(null)
+const newTaskName = ref("")
 
 
 function createNewTask() {
   if (newTaskName.value) {
-    const newTask = {id: Date.now(), name: newTaskName.value}
+    const newTask = {id: Date.now(), name: newTaskName.value, done: false}
     tasks.value.push(newTask)
     newTaskName.value = ""
   }
@@ -74,10 +74,7 @@ const filteredTasks = computed(() => {
 })
 
   function deleteTask(index) {
-    const task = tasks.value.find((task) => task.id === taskId);
-  if (task) {
-    tasks.slice(index, 1);
-  }
+  tasks.value.splice(index,1)
   }
 
 </script>
