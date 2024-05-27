@@ -1,21 +1,24 @@
 <template>
   <div class="task">
     <div class="task__wrapper">
-      <input type="checkbox" class="task__checkbox" v-model="checkboxValue">
-      <label for="checkbox"></label>
+
+
+
+      <div class="task__checkbox">
+        <label class="task__checkbox-label">
+          <input type="checkbox" class="task__checkbox-input" v-model="checkboxValue" :checked="toogle" >
+        </label>
+      </div>
+
+
+
     </div>
+<!--      Изначальное:-->
+<!--      <input type="checkbox" class="task__checkbox" v-model="checkboxValue">-->
+<!--      <label for="checkbox"></label>-->
     <textarea class="task-primary-textarea" v-model="textareaValue" :placeholder="placeholder"></textarea>
   </div>
 </template>
-
-<!--// ДЗ-->
-<!--// Расписать по пунктам что делаем-->
-<!--// - как работает множественный v-model-->
-<!--// - как происходит мутация множественного v-model-->
-<!--// - как работает v-model на компонентах-->
-<!--// - по аналогии сделать с description-->
-<!--// - избавиться от name в TaskCard, а использовать только props task везде будет task.name-->
-<!--// - по хорошему thetextarea компонент переназвать на TheTask-->
 
 <script setup>
 import {computed} from "vue";
@@ -27,7 +30,7 @@ const props = defineProps({
   },
   isChecked: {
     type: Boolean,
-    default:""
+    default:false
   },
   placeholder: {
     type: String,
@@ -59,6 +62,44 @@ const textareaValue = computed({
 </script>
 
 <style scoped>
+.task__checkbox {
+  padding: 10px;
+}
+
+.task__checkbox-label {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  top: 1px;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: transparent;
+  border: 2px solid #4EA8DE;
+  transition: background-color 0.25s ease;
+  border-radius: 50%;
+}
+
+.task__checkbox-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .task {
   display: flex;
@@ -89,21 +130,6 @@ const textareaValue = computed({
   outline-offset: 0;
 }
 
-.task__checkbox {
-  position: absolute;
-  //z-index: -1;
-  //opacity: 0;
-  margin: 10px 0 0 7px;
-}
 
-.task__checkbox + label {
-  position: relative;
-  padding: 0 0 0 35px;
-  cursor: pointer;
-}
-
-.task__checkbox:checked + label:after {
-  opacity: 1;
-}
 
 </style>

@@ -9,12 +9,12 @@
           <path d="M7.16154 27.5957C6.97931 27.5863 6.797 27.6129 6.62546 27.6742C6.45392 27.7355 6.29665 27.8302 6.16302 27.9525C6.02939 28.0749 5.92213 28.2224 5.84761 28.3864C5.77309 28.5504 5.73284 28.7275 5.72925 28.9071V33.067C5.72925 33.4297 5.87562 33.7776 6.13617 34.0341C6.39672 34.2906 6.7501 34.4348 7.11857 34.4348C7.48704 34.4348 7.84042 34.2906 8.10097 34.0341C8.36152 33.7776 8.50789 33.4297 8.50789 33.067V28.9635C8.51362 28.7877 8.48373 28.6125 8.41998 28.4482C8.35623 28.2838 8.25989 28.1336 8.13658 28.0063C8.01326 27.879 7.86544 27.7771 7.70173 27.7067C7.53802 27.6362 7.36169 27.5985 7.18302 27.5957H7.16154Z" fill="#5E60CE"/>
           <path d="M10.9213 27.5958C10.7426 27.592 10.5649 27.623 10.3984 27.6869C10.2318 27.7507 10.0797 27.8463 9.95068 27.9681C9.82167 28.0899 9.71828 28.2355 9.64644 28.3966C9.5746 28.5577 9.5357 28.7312 9.53198 28.9072V34.6392C9.53198 35.002 9.67836 35.3499 9.93891 35.6064C10.1995 35.8629 10.5528 36.007 10.9213 36.007C11.2898 36.007 11.6432 35.8629 11.9037 35.6064C12.1643 35.3499 12.3106 35.002 12.3106 34.6392V28.9988C12.3164 28.823 12.2865 28.6478 12.2227 28.4835C12.159 28.3191 12.0626 28.1689 11.9393 28.0416C11.816 27.9143 11.6682 27.8124 11.5045 27.7419C11.3408 27.6714 11.1644 27.6337 10.9858 27.631L10.9213 27.5958Z" fill="#5E60CE"/>
         </svg>
-        <h1 class="header__title">to<span class="header__title-shaded">do</span></h1>
+        <h1 class="header__title">to<strong class="header__title-shaded">do</strong></h1>
       </a>
   </header>
   <main class="main">
     <section class="hero">
-      <TheTask class="hero__search" v-model="search" placeholder="Search tasks..."/>
+      <TheTask class="hero__search" v-model="search" placeholder="Search tasks..." />
       <div class="hero__container">
         <TheTask class="hero__create-task" v-model:description="newTaskName" placeholder="Add a new task"/>
         <TheButton class="hero__create-button" @click="createNewTask" :icon="PlusIcon">
@@ -25,7 +25,6 @@
           <ul v-show="tasks.length">
             <li :key="item.id" v-for="(item,index) in filteredTasks" >
               <TaskCard :task="item" @save="changeTask(item.id, $event)" @delete="deleteTask(index)"></TaskCard>
-<!--              <TaskCard :name="item.name" :task="item" @save="changeTask(item.id, $event)" @delete="deleteTask(index)"></TaskCard>-->
             </li>
           </ul>
           <div class="hero__placeholder-container" v-show="!tasks.length">
@@ -74,13 +73,6 @@ const filteredTasks = computed(() => {
   function deleteTask(index) {
   tasks.value.splice(index,1)
   }
-
-  // function changeDone() {
-  //   const task = tasks.value.find(task => task.id === taskId)
-  //   if (task) {
-  //     task.done = true
-  //   }
-  // }
 
 </script>
 
@@ -180,16 +172,13 @@ const filteredTasks = computed(() => {
     background-color: #1E6F9F;
   }
 
-  &__create-button {
-    background-color: #1E6F9F;
-  }
-
   &__create-button:hover {
     transition: background-color .25s ease-out;
-    background-color: #1E6F9F;
+    background-color: transparent;
   }
 
   &__create-button:active {
+    transition: background-color .25s ease-out;
     background-color: #5E60CE;
   }
 
@@ -208,7 +197,7 @@ const filteredTasks = computed(() => {
     font-size: 18px;
     line-height: 18px;
     font-weight: 600;
-    padding: 8px 0;
+    padding: 24px 0;
     color: #4EA8DE;
     margin: 0;
   }

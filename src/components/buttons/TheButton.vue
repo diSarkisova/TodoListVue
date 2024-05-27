@@ -27,16 +27,6 @@ defineProps( {
     width: 25px;
     height: 25px;
   }
-
-  &:hover :deep(.primary-button__icon path) {
-    fill: white;
-  }
-
-  &:active :deep(.primary-button__icon path) {
-    fill: black;
-    transition: fill .2s ease-out;
-  }
 }
-
 
 </style>
