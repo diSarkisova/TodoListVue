@@ -14,7 +14,7 @@
   </header>
   <main class="main">
     <section class="hero">
-      <TheTask class="hero__search" v-model="search" placeholder="Search tasks..." />
+      <TheTask class="hero__search" v-model:description="search" placeholder="Search tasks..." />
       <div class="hero__container">
         <TheTask class="hero__create-task" v-model:description="newTaskName" placeholder="Add a new task"/>
         <TheButton class="hero__create-button" @click="createNewTask" :icon="PlusIcon">
@@ -24,7 +24,8 @@
           <h1 class="hero__title">Created tasks</h1>
           <ul v-show="tasks.length">
             <li :key="item.id" v-for="(item,index) in filteredTasks" >
-              <TaskCard :task="item" @save="changeTask(item.id, $event)" @delete="deleteTask(index)"></TaskCard>
+              <TaskCard :task="item" @delete="deleteTask(index)"></TaskCard>
+<!--              <TaskCard :task="item" @save="changeTask(item.id, $event)" @delete="deleteTask(index)"></TaskCard>-->
             </li>
           </ul>
           <div class="hero__placeholder-container" v-show="!tasks.length">
@@ -57,12 +58,12 @@ function createNewTask() {
   }
 }
 
-function changeTask(taskId, newTaskName) {
-  const task = tasks.value.find(task => task.id === taskId)
-  if (task) {
-    task.name = newTaskName
-  }
-}
+// function changeTask(taskId, newTaskName) {
+//   const task = tasks.value.find(task => task.id === taskId)
+//   if (task) {
+//     task.name = newTaskName
+//   }
+// }
 const filteredTasks = computed(() => {
   if (search.value === null) {
     return tasks.value
@@ -78,6 +79,7 @@ const filteredTasks = computed(() => {
 
 
 <style lang="scss" scoped>
+
 .header {
   display: flex;
   align-items: center;
@@ -109,9 +111,12 @@ const filteredTasks = computed(() => {
     color: #4EA8DE;
     margin: 0;
   }
+
   &__title:active {
     color: black;
+    transition: color .25s ease-out;
   }
+
 
   &__title-shaded {
     font-size: 38px;
@@ -123,10 +128,12 @@ const filteredTasks = computed(() => {
 
   &__title-shaded:hover {
     color: #4EA8DE;
+    transition: color .25s ease-out;
   }
 
   &__title-shaded:active {
     color: black;
+    transition: color .25s ease-out;
   }
 }
 

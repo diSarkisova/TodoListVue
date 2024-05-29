@@ -1,6 +1,6 @@
 <template>
     <div class="task-card">
-        <TheTask class="task-card__created" :disabled="!isEdit" @keydown.enter="onSave" v-model:description="task.name" v-model:isChecked="task.checked"/>
+        <TheTask class="task-card__created" :disabled="!isEdit" @keydown.enter="onSave" v-model:description="task.name" v-model:isChecked="task.checked" checkbox/>
       <div class="task-card__wrapper">
         <TheButton class="task-card__change" v-if="!isEdit" @click="onEdit" :icon="PenIcon">
         </TheButton>
@@ -28,8 +28,9 @@ const value = ref(props.task.name)
 const isEdit = ref(false)
 
 const emit = defineEmits(["save", "delete","done"])
+
 function onSave() {
-    emit("save", value.value)
+    // emit("save", value.value)
     isEdit.value = false
 }
 function onEdit() {
@@ -39,7 +40,6 @@ function onEdit() {
 function onDelete() {
   emit("delete", value.value)
 }
-
 </script>
 
 <style scoped>
