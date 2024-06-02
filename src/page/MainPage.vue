@@ -15,7 +15,7 @@
   <main class="main">
     <section class="hero">
       <TheTask class="hero__search" v-model:description="search" placeholder="Search tasks..." />
-      <div class="hero__container">
+      <div class="hero__container" >
         <TheTask class="hero__create-task" v-model:description="newTaskName" placeholder="Add a new task"/>
         <TheButton class="hero__create-button" @click="createNewTask" :icon="PlusIcon">
         </TheButton>
@@ -25,7 +25,6 @@
           <ul v-show="tasks.length">
             <li :key="item.id" v-for="(item,index) in filteredTasks" >
               <TaskCard :task="item" @delete="deleteTask(index)"></TaskCard>
-<!--              <TaskCard :task="item" @save="changeTask(item.id, $event)" @delete="deleteTask(index)"></TaskCard>-->
             </li>
           </ul>
           <div class="hero__placeholder-container" v-show="!tasks.length">
@@ -44,26 +43,25 @@ import TaskCard from "../components/common/TaskCard.vue";
 import TheButton from "../components/buttons/TheButton.vue";
 import PlusIcon from "../components/icons/PlusIcon.vue";
 import TheTask from "../components/common/TheTask.vue";
-import {computed, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 const search = ref("")
 const tasks = ref([])
 const newTaskName = ref("")
-
 
 function createNewTask() {
   if (newTaskName.value) {
     const newTask = {id: Date.now(), name: newTaskName.value, checked: false}
     tasks.value.push(newTask)
     newTaskName.value = ""
+    updateStorage()
   }
 }
 
-// function changeTask(taskId, newTaskName) {
-//   const task = tasks.value.find(task => task.id === taskId)
-//   if (task) {
-//     task.name = newTaskName
-//   }
-// }
+function updateStorage () {
+  const parsedTasks=JSON.stringify(tasks.value)
+  localStorage.setItem("tasks",parsedTasks)
+}
+
 const filteredTasks = computed(() => {
   if (search.value === null) {
     return tasks.value
@@ -73,13 +71,15 @@ const filteredTasks = computed(() => {
 
   function deleteTask(index) {
   tasks.value.splice(index,1)
+    updateStorage()
   }
 
+onMounted(()=>{
+ tasks.value = JSON.parse(localStorage.getItem("tasks"))
+})
 </script>
 
-
 <style lang="scss" scoped>
-
 .header {
   display: flex;
   align-items: center;
@@ -117,7 +117,6 @@ const filteredTasks = computed(() => {
     transition: color .25s ease-out;
   }
 
-
   &__title-shaded {
     font-size: 38px;
     line-height: 38px;
@@ -146,11 +145,8 @@ const filteredTasks = computed(() => {
   padding: 20px 45px;
 
   @media screen and (min-width: 750px) {
-    & {
-      padding: 20px 78px;
-
+    padding: 20px 78px;
     }
-  }
 }
 
 .hero {
@@ -159,9 +155,7 @@ const filteredTasks = computed(() => {
   width: 100%;
 
   @media screen and (min-width: 400px) {
-    & {
-      max-width: 704px;
-    }
+    max-width: 704px;
   }
 
   &__container {
@@ -177,11 +171,6 @@ const filteredTasks = computed(() => {
 
   &__create-button {
     background-color: #1E6F9F;
-  }
-
-  &__create-button:hover {
-    transition: background-color .25s ease-out;
-    background-color: transparent;
   }
 
   &__create-button:active {

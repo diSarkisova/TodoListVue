@@ -18,7 +18,6 @@ import SaveIcon from "../icons/SaveIcon.vue";
 import BasketIcon from "../icons/BasketIcon.vue";
 import TheTask from "./TheTask.vue";
 
-
 const props = defineProps({
   task: {
     type: Object
@@ -30,7 +29,6 @@ const isEdit = ref(false)
 const emit = defineEmits(["save", "delete","done"])
 
 function onSave() {
-    // emit("save", value.value)
     isEdit.value = false
 }
 function onEdit() {

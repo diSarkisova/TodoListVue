@@ -33,7 +33,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(["isChecked","description"])
+const emit = defineEmits(["update:isChecked","update:description"])
 
 const checkboxValue = computed({
   get() {
