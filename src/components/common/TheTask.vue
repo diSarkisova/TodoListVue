@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import {computed} from "vue";
+import {computed, ref} from "vue";
 
 const props = defineProps({
  description: {
