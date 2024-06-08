@@ -4,9 +4,3 @@
     <path d="M11.707 7.38129H8.4954V4.16968H7.41397V7.38129H4.19873V8.46271H7.41397V11.6743H8.4954V8.46271H11.707V7.38129Z" fill="#F2F2F2"/>
   </svg>
 </template>
-
-<script setup>
-</script>
-<style scoped>
-
-</style>

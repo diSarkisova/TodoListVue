@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import {computed, ref} from "vue";
+import {computed} from "vue";
 
 const props = defineProps({
  description: {
@@ -33,7 +33,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(["isChecked","description"])
+const emit = defineEmits(["update:isChecked","update:description"])
 
 const checkboxValue = computed({
   get() {

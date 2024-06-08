@@ -14,7 +14,6 @@ defineProps( {
 </script>
 
 <style lang="scss" scoped>
-
 .primary-button {
   border-radius: 8px;
   border: 1px solid transparent;

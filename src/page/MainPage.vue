@@ -25,7 +25,6 @@
           <ul v-show="tasks.length">
             <li :key="item.id" v-for="(item,index) in filteredTasks" >
               <TaskCard :task="item" @delete="deleteTask(index)"></TaskCard>
-<!--              <TaskCard :task="item" @save="changeTask(item.id, $event)" @delete="deleteTask(index)"></TaskCard>-->
             </li>
           </ul>
           <div class="hero__placeholder-container" v-show="!tasks.length">
@@ -44,7 +43,7 @@ import TaskCard from "../components/common/TaskCard.vue";
 import TheButton from "../components/buttons/TheButton.vue";
 import PlusIcon from "../components/icons/PlusIcon.vue";
 import TheTask from "../components/common/TheTask.vue";
-import {computed, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 const search = ref("")
 const tasks = ref([])
 const newTaskName = ref("")
@@ -55,15 +54,15 @@ function createNewTask() {
     const newTask = {id: Date.now(), name: newTaskName.value, checked: false}
     tasks.value.push(newTask)
     newTaskName.value = ""
+    updateStorage()
   }
 }
 
-// function changeTask(taskId, newTaskName) {
-//   const task = tasks.value.find(task => task.id === taskId)
-//   if (task) {
-//     task.name = newTaskName
-//   }
-// }
+function updateStorage () {
+  const parsedTasks=JSON.stringify(tasks.value)
+  localStorage.setItem("tasks",parsedTasks)
+}
+
 const filteredTasks = computed(() => {
   if (search.value === null) {
     return tasks.value
@@ -73,13 +72,15 @@ const filteredTasks = computed(() => {
 
   function deleteTask(index) {
   tasks.value.splice(index,1)
+    updateStorage()
   }
 
+onMounted(()=>{
+  tasks.value = JSON.parse(localStorage.getItem("tasks"))
+})
 </script>
 
-
 <style lang="scss" scoped>
-
 .header {
   display: flex;
   align-items: center;
