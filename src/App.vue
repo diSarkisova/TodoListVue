@@ -8,10 +8,6 @@
 import MainPage from "./page/MainPage.vue";
 </script >
 
-<style >
-
-</style >
-
 
 
 
