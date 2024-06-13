@@ -1,14 +1,15 @@
 <template>
   <div class="task">
       <div class="task__checkbox-container" :class="{'dynamic': isChecked}" v-show="checkbox">
-          <input type="checkbox" class="task__checkbox-input" v-model="checkboxValue" >
+          <input type="checkbox" class="task__checkbox-input" v-model="checkboxValue">
       </div>
     <textarea class="task-primary-textarea" v-model="textareaValue" :placeholder="placeholder" :disabled="disabled"></textarea>
   </div>
 </template>
 
 <script setup>
-import {computed} from "vue";
+import {computed, ref} from "vue";
+const inputEl= ref(null)
 
 const props = defineProps({
  description: {
@@ -34,6 +35,7 @@ const props = defineProps({
 })
 
 const emit = defineEmits(["update:isChecked","update:description"])
+
 
 const checkboxValue = computed({
   get() {
@@ -91,6 +93,8 @@ const textareaValue = computed({
   border: 2px solid #4EA8DE;
   transition: background-color 0.25s ease-out;
   border-radius: 50%;
+  min-height: 18px;
+  min-width: 18px;
 }
 
 .dynamic {

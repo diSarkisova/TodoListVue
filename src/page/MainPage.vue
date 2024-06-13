@@ -24,7 +24,7 @@
           <h1 class="hero__title">Created tasks</h1>
           <ul v-show="tasks.length">
             <li :key="item.id" v-for="(item,index) in filteredTasks" >
-              <TaskCard :task="item" @delete="deleteTask(index)"></TaskCard>
+              <TaskCard :task="item" @delete="deleteTask(index)" @update="updateStorage"></TaskCard>
             </li>
           </ul>
           <div class="hero__placeholder-container" v-show="!tasks.length">
@@ -76,7 +76,9 @@ const filteredTasks = computed(() => {
   }
 
 onMounted(()=>{
-  tasks.value = JSON.parse(localStorage.getItem("tasks"))
+   const tasksFromStorage=localStorage.getItem("tasks")
+  const parsedTasks=JSON.parse(tasksFromStorage) ?? []
+  tasks.value=parsedTasks
 })
 </script>
 

@@ -1,10 +1,10 @@
 <template>
     <div class="task-card">
-        <TheTask class="task-card__created" :disabled="!isEdit" @keydown.enter="onSave" v-model:description="task.name" v-model:isChecked="task.checked" checkbox/>
+        <TheTask class="task-card__created" :disabled="!isEdit" @keydown.enter="onUpdate" v-model:description="task.name" v-model:isChecked="task.checked" checkbox/>
       <div class="task-card__wrapper">
         <TheButton class="task-card__change" v-if="!isEdit" @click="onEdit" :icon="PenIcon">
         </TheButton>
-        <TheButton class="task-card__save" v-else @click="onSave" :icon="SaveIcon" ></TheButton>
+        <TheButton class="task-card__update" v-else @click="onUpdate" :icon="SaveIcon" ></TheButton>
         <TheButton class="task-card__delete" @click="onDelete" :icon="BasketIcon"></TheButton>
       </div>
     </div>
@@ -26,13 +26,14 @@ const props = defineProps({
 const value = ref(props.task.name)
 const isEdit = ref(false)
 
-const emit = defineEmits(["save", "delete","done"])
+const emit = defineEmits(["update", "delete","done"])
 
-function onSave() {
+function onUpdate() {
     isEdit.value = false
+  emit("update")
 }
 function onEdit() {
-  isEdit.value = true
+     isEdit.value = true
 }
 
 function onDelete() {
