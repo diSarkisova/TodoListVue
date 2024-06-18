@@ -8,8 +8,7 @@
 </template>
 
 <script setup>
-import {computed, ref} from "vue";
-const inputEl= ref(null)
+import {computed} from "vue";
 
 const props = defineProps({
  description: {
