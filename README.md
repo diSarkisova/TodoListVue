@@ -11,7 +11,6 @@ This is a project that is a simple task list implemented using Vue.js.
 * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide)
 * [Vite](https://vitejs.dev/)
 * [HTML](https://html.spec.whatwg.org/multipage/)
-* [HTML](https://html.spec.whatwg.org/multipage/)
 * [SCSS](https://sass-lang.com/)
 * [GIT](https://www.git-scm.com/)
 * [BEM](https://getbem.com/)
