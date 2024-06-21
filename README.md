@@ -6,10 +6,14 @@ This is a project that is a simple task list implemented using Vue.js.
 * Requirements
 * Features
 ## Stack
-* [HTML](https://html.spec.whatwg.org/multipage/)
-* [CSS](https://www.w3.org/Style/CSS/)
+* CSR
+* [Vue JS](https://ru.vuejs.org/)
 * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide)
-* [Vue](https://ru.vuejs.org/)
+* [Vite](https://vitejs.dev/)
+* [HTML](https://html.spec.whatwg.org/multipage/)
+* [HTML](https://html.spec.whatwg.org/multipage/)
+* [SCSS](https://sass-lang.com/)
+* [GIT](https://www.git-scm.com/)
 * [BEM](https://getbem.com/)
 ## Installation
 #### To get up and running, follow these steps:
@@ -27,7 +31,7 @@ The project is a simple task list with the ability to add, delete, and edit task
 ## Projest practices
 **Code style:** we use Prettier for code formatting.
 
-Also we use the BEM CSS system in the project, it's a component-based approach.
+Also we use the BEM SCSS system in the project, it's a component-based approach.
 
 **Folders:**
 
@@ -48,16 +52,16 @@ The “components” folder contain folders buttons, common, icons.
 **In this project we used the following components:**
 
 MainPage- component of a whole todo page.
-
-TheInput - an input field component that allows users to create, save, search, and delete items.
-
-TheButton - a button component allows users to interact with an input field to add, edit, and delete tasks.
+It stores information about created tasks and contains components such as TaskCard, TheTask and TheButton for interacting with the created task.
+Also, using this component, we can search for tasks.
 
 TaskCard - component for displaying tasks created by the user.
 
-It stores information about created tasks and contains components such as TheButton and TheInput for interacting with the created task.
+TheTask - an input field component that allows users to create items.
 
-Also, using this component, we can search for tasks.
+TheButton - a button component allows users to interact with an input field to add, update, and delete tasks.
+
+TaskCard - component for displaying tasks created by the user.
 
 BasketIcon, PenIcon, PlusIcon and SaveIcon - components for displaying svg pictures inside TheButton.
 
